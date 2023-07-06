@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'New_page.dart';
 
@@ -9,10 +10,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Pesonal Expenses',
+      debugShowCheckedModeBanner: false,
+      title: 'Aubergine Test',
       theme: ThemeData(
-        primarySwatch: Colors.purple,
-        accentColor: Colors.amber,
         appBarTheme: AppBarTheme(
           titleTextStyle: TextStyle(
             fontSize: 20,
@@ -38,46 +38,41 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     final appBar = AppBar(
       title: Text("Aubergine Test"),
+      backgroundColor: Color.fromARGB(255, 4, 93, 84),
     );
     return Scaffold(
       appBar: appBar,
-      body: SingleChildScrollView(
-        child: Column(
-            // mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              Container(
-                child: InkWell(
-                    child: Card(
-                      elevation: 6,
-                      margin: EdgeInsets.symmetric(
-                        horizontal: 5,
-                        vertical: 8,
+      body: ListView.builder(
+          itemCount: 3,
+          shrinkWrap: true,
+          itemBuilder: (context, index) {
+            return InkWell(
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25),
+                  ),
+                  color: Colors.white,
+                  elevation: 6,
+                  margin: EdgeInsets.symmetric(
+                    horizontal: 5,
+                    vertical: 8,
+                  ),
+                  child: ListTile(
+                      leading: CircleAvatar(
+                        radius: 30,
+                        child: Icon(CupertinoIcons.person_alt),
                       ),
-                      child: ListTile(
-                          leading: CircleAvatar(
-                            radius: 30,
-                            child: Padding(
-                              padding: const EdgeInsets.all(6),
-                              child: FittedBox(
-                                child: Text('₹'),
-                              ),
-                            ),
-                          ),
-                          title: Text(
-                            "Rahul",
-                            style: Theme.of(context).textTheme.titleLarge,
-                          ),
-                          subtitle: Text("rahulparmar8189")),
-                    ),
-                    onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => NewPage()));
-                    }),
-              )
-              // TransactionList(_userTransactions, _removeTransaction),
-            ]),
-      ),
+                      title: Text(
+                        "Rahul",
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
+                      subtitle: Text("rahulparmar8189")),
+                ),
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => NewPage()));
+                });
+          }),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
